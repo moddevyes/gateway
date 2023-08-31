@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gateway.gateway.GatewayApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-31T17:23:22" hostname="2NF0VT3" time="0.045">
+  <properties/>
+  <testcase name="shouldCreateAnApplication()" classname="gateway.gateway.GatewayApplicationTests" time="0.045"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
