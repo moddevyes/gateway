@@ -4,11 +4,11 @@ EXPOSE 8000
 ARG JAR_FILE=build/libs/gateway-0.0.1.jar
 ARG JAR_FILE
 COPY ${JAR_FILE} gateway-0.0.1.jar
-ENTRYPOINT ["java","-jar","/gateway-0.0.1.jar"]
+ENTRYPOINT ["java","-jar","gateway-0.0.1.jar"]
 
 
 # BUILD
-# docker build -t gateway .
+# docker build -t gateway:latest .
 
 # IMAGE built and in docker
 
