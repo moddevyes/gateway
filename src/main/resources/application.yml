@@ -21,6 +21,12 @@ spring:
             uri: http://localhost:8003/
             predicates:
               - Path=/shipments/**
+          - id: config-server
+            uri: http://localhost:8888
+            predicates:
+              - Path=/config/**
+            filters:
+              - RewritePath=/config/(?<segment>.*), /$\{segment}
 
 server:
   port: 8000
