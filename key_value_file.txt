@@ -1,0 +1,6 @@
+SPRING_APPLICATION_NAME=gateway-service
+SPRING_CLOUD_CLIENT_HOSTNAME=gateway-service
+
+EUREKA_INSTANCE_HOSTNAME=commerce-registry-service
+EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://${eureka.instance.hostname}:8761/eureka/
+EUREKA_CLIENT_INSTANCE.APPNAME=commerce-gateway-service

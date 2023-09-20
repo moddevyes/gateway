@@ -1,2 +1,1 @@
-# gateway
-Cloud Gateway Service
+# Cloud Gateway Service

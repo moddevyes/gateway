@@ -1,7 +1,7 @@
 # Accounts Service Gateway Config
 spring:
     application:
-      name: gateway
+      name: commerce-gateway-service
     cloud:
       gateway:
         routes:
