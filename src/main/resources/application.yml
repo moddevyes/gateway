@@ -1,26 +1,29 @@
 # Accounts Service Gateway Config
 spring:
     application:
-      name: commerce-gateway-service
+      name: gateway-service
     cloud:
       gateway:
         routes:
           - id: accounts
-            uri: http://localhost:8001/
+            uri: http://${host.docker.internal:localhost}:8001/
             predicates:
               - Path=/accounts/**
           - id: orders
-            uri: http://localhost:8004/
+            uri: http://${host.docker.internal:localhost}:8004/
             predicates:
               - Path=/orders/**
           - id: products
-            uri: http://localhost:8002/
+            uri: http://${host.docker.internal:localhost}:8002/
             predicates:
               - Path=/products/**
           - id: shipments
-            uri: http://localhost:8003/
+            uri: http://${host.docker.internal:localhost}:8003/
             predicates:
               - Path=/shipments/**
+        discovery:
+          locator:
+            enabled: true
 
 server:
   port: 8000
@@ -29,11 +32,12 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://${eureka.instance.hostname:localhost}:8761/eureka/
   instance:
-    statusPageUrl: https://${eureka.hostname}/info
-    healthCheckUrl: https://${eureka.hostname}/health
-    homePageUrl: https://${eureka.hostname}/
+    statusPageUrl: https://${eureka.instance.hostname:localhost}:${server.port}/actuator/info
+    healthCheckUrl: https://${eureka.instance.hostname:localhost}:${server.port}/health
+    homePageUrl: https://${eureka.instance.hostname:localhost}:${server.port}/
+    appname: gateway-service
 
 management:
   endpoints:
