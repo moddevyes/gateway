@@ -4,19 +4,19 @@ spring:
     gateway:
       routes:
         - id: accounts
-          uri: lb://accounts-service:8001
+          uri: lb://accounts-service
           predicates:
             - Path=/accounts/**
         - id: orders
-          uri: lb://orders-service:8004
+          uri: lb://orders-service
           predicates:
             - Path=/orders/**
         - id: products
-          uri: lb://products-service:8002
+          uri: lb://products-service
           predicates:
             - Path=/products/**
         - id: shipments
-          uri: lb://shipments-service:8003
+          uri: lb://shipments-service
           predicates:
             - Path=/shipments/**
       discovery:
@@ -30,10 +30,14 @@ server:
   port: 8000
 
 eureka:
+  instance:
+    hostname: gateway-service
+    prefer-ip-address: true
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
-      defaultZone: ${EUREKA_URI:http://localhost:8761}/eureka
-      preferIpAddress: true
+      defaultZone: ${EUREKA_INSTANCE_HOSTNAME:localhost}:8761/eureka
 
 management:
   endpoints:
