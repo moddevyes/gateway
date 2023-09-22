@@ -1,44 +1,28 @@
 # Accounts Service Gateway Config
-# spring:
-#     application:
-#       name: gateway-service
-#     cloud:
-#       gateway:
-    #     routes:
-    #       - id: accounts
-    #         uri: http://${host.docker.internal:localhost}:8001/
-    #         predicates:
-    #           - Path=/accounts/**
-    #       - id: orders
-    #         uri: http://${host.docker.internal:localhost}:8004/
-    #         predicates:
-    #           - Path=/orders/**
-    #       - id: products
-    #         uri: http://${host.docker.internal:localhost}:8002/
-    #         predicates:
-    #           - Path=/products/**
-    #       - id: shipments
-    #         uri: http://${host.docker.internal:localhost}:8003/
-    #         predicates:
-    #           - Path=/shipments/**
-    #     discovery:
-    #       locator:
-    #         enabled: true
-    #         lower-case-service-id: true
 spring:
   cloud:
     gateway:
+      routes:
+        - id: accounts
+          uri: lb://accounts-service:8001
+          predicates:
+            - Path=/accounts/**
+        - id: orders
+          uri: lb://orders-service:8004
+          predicates:
+            - Path=/orders/**
+        - id: products
+          uri: lb://products-service:8002
+          predicates:
+            - Path=/products/**
+        - id: shipments
+          uri: lb://shipments-service:8003
+          predicates:
+            - Path=/shipments/**
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
-      routes:
-        - id: accounts
-          uri: lb://accounts
-          predicates:
-            - Path=/api/**
-          filters:
-            - RewritePath=/api/(?<path>.*), /$\{path}
   application:
     name: gateway-service
 
